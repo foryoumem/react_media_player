@@ -1,70 +1,37 @@
-# Getting Started with Create React App
+### 개요
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Media Player는 사용자가 Drive 같은 외부 저장 공간에 있는 음악과 비디오를 재생하기 위해 만든 웹 앱입니다.
 
-## Available Scripts
+저장 공간의 저장 공간의 디렉터리를 포함한 호스트를 입력하면 미디어 파일의 링크를 정리해서 파일명으로 페이지에 표시하고, 재생하고 싶은 미디어 파일을 선별해서 플레이리스트를 만들 수 있습니다.
 
-In the project directory, you can run:
+### 와이어프레임
 
-### `npm start`
+처음 앱에 진입하면 홈 화면이 나타나고 다음과 같은 영역이 있습니다.
+1. 호스트 영역: 미디어가 있는 디렉터리를 포함한 호스트를 입력해서 미디어의 데이터를 얻습니다. 그 데이터는 DB로 만들어서 서버에 저장됩니다.
+2. 미디어 목록 영역: 미디어 링크를 파일명으로 정리합니다. 목록의 상단에서 검색창을 통해 미디어를 찾을 수 있습니다. 목록에 있는 미디어를 클릭하면 재생 페이지로 이동합니다.
+3. 플레이리스트 영역: 미디어 목록에서 플레이리스트를 생성하고 미디어 목록에 있는 미디어를 드래그 드랍으로 추가할 수 있습니다. 해당 플레이리스트를 클릭하면 재생 페이지로 이동합니다.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+![home](./image/IMG_6443.jpg)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+미디어 또는 플레이리스트를 클릭하면 재생 화면이 나타나고 다음과 같은 영역이 있습니다.
+1. 음악 또는 영상 재생 영역: 미디어를 재생하기 위한 사이드 바가 아래에 있고, 음악의 경우 앨범의 표지가 위에 나타나며, 영상은 그대로 영상이 표시됩니다.
+2. 플레이리스트 영역: 클릭했던 플레이리스트에 있는 미디어가 이 곳에 나타납니다. 단일 미디어를 클릭해서 이 페이지로 왔다면, 해당 미디어만 표시됩니다. 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![play](./image/IMG_6444.jpg)
 
-### `npm run build`
+### 기술 스택 및 도구
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. React 18.2.0과 TypeScirpt를 사용해서 개발
+2. react-router-dom 6.22.3을 사용해 라우터를 생성
+3. styled-component 6.1.8을 사용해 CSS 작성
+4. 구글 스프레드시트를 사용해 DB 관리
+5. react-player 2.15.1을 사용해 미디어 재생
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 기능
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+접근 권한이 있는 Drive의 호스트를 입력해 미디어 목록을 불러올 수 있습니다.
 
-### `npm run eject`
+불러온 미디어를 플레이리스트 안에서 관리할 수 있습니다.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+미디어를 원하는 방식으로 정렬 후 재생할 수 있습니다.
