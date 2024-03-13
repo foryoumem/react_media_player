@@ -15,7 +15,7 @@ const DragDropList = ({ data, droppableId }) => {
                   {...provided.dragHandleProps}
                   style={{ userSelect: 'none', ...provided.draggableProps.style }}
                 >
-                  {item.title}
+                  {item.link}
                 </li>
               )}
             </Draggable>
