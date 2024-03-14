@@ -12,7 +12,7 @@ const exampleData = [
 export const playSlice = createSlice({
     name: "play",
     initialState: {
-        value: exampleData,
+        value: [],
     },
     reducers: {
         onChangePlaylist: (state, action) => {

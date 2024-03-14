@@ -1,40 +1,14 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
+import { fetchMedia } from "../features/mediaSlice"
+import { useDispatch } from "react-redux"
 
-import { useSelector, useDispatch } from "react-redux"
-import { fetchMedia, onChangeMedialist } from "../features/mediaSlice"
-import { onChangePlaylist } from "../features/playSlice"
-import { DragDropContext } from "react-beautiful-dnd"
-
-import styled from "styled-components"
-
-import MediaComponent from "../component/MediaComponent"
-
-const RootContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-`
-const Header = styled.h1`
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-`
-
-const Media = styled.div`
-`
-// display: flex;
-// justify-content: space-around;
-// width: 100%;
-
+import MediaOrganize from "../component/MediaOrganize"
 
 export default function Root() {
     console.log("Root Component 실행")
 
-    const medialist = useSelector(state => state.media.value)
-    const playlist = useSelector(state => state.play.value)
     const dispatch = useDispatch()
-    
+
     useEffect(() => {
         console.log("Dependency array의 요소 변경으로 useEffect 실행")
         dispatch(fetchMedia())
@@ -44,13 +18,23 @@ export default function Root() {
         }
     }, [])
 
-    //
-    
+
     return (
-        <RootContainer>
-            <Header>Media Player</Header>
-            <MediaComponent />
-        </RootContainer>
+        <div>
+            <MediaOrganize />
+        </div>
     )
 }
 
+
+/*
+redux 계속 사용해서 구현해보는데, << thunk 계속 사용
+
+서버는 JSON Server 사용하고.
+
+drag drop 은 계속 라이브러리 사용하고, 나중에 결과물 다 만들고 직접 만들어보던가.
+
+styled component 적용
+
+option: type script 사용하고
+*/
