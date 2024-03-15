@@ -10,31 +10,57 @@ border-radius: 2px;
 `
 
 const ItemList = styled.div`
+flex-grow: 1;
 border: 1px solid lightgrey;
 border-radius: 2px;
+transition: background-color ease 0.2s;
+background-color: ${props => props.$isDraggingOver ? "palevioletred" : "white"};
 width: 250px;
+min-height: 100vh;
 `
 
 const Title = styled.h2`
 text-align: center;
 `
 
-const MediaColumn = ({data, type, title}) => {
+const MediaColumn = ({media}) => {
 
     return (
         <Container>
-            <Title>{title}</Title>
-            <Droppable droppableId={type} type={"explorer"}>
-                {(provided) => (
-                    <ItemList ref={provided.innerRef} {...provided.droppableProps}>
-                        {data.map((iter, index) => (
+            <Title>{media.title}</Title>
+            <Droppable
+                droppableId={media.droppableId}
+                type={"explorer"}
+                isDropDisabled={media.isDropDisabled}
+            >
+                {(provided, snapshot) => (
+                    <ItemList ref={provided.innerRef} {...provided.droppableProps}
+                        $isDraggingOver={snapshot.isDraggingOver}>
+                        {media.list.map((iter, index) => (
                             <MediaItem key={iter.id} data={iter} index={index} />
                         ))}
                         {provided.placeholder}
                     </ItemList>
                 )}
             </Droppable>
-        </Container>  
+        </Container>
+    )
+}
+
+const MainColumn = ({media}) => {
+
+    return (
+        <Container>
+            <Title>media.title</Title>
+            <Droppable
+            droppableId={media.droppableId}
+            type="COLUMN"
+            isDropDisabled={media.isDropDisabled}
+            renderClone={null} 
+            >
+
+            </Droppable>
+        </Container>
     )
 }
 

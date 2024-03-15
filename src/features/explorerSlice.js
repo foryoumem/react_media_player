@@ -1,20 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit"
+import { init } from "./initialExplorer"
 
 export const explorerSlice = createSlice({
     name: "explorer",
     initialState: {
-        value: {
-            main: {
-                id: "Column-1",
-                title: "Loaded media",
-                list: [],
-            },
-            play: {
-                id: "Column-2",
-                title: "Playlist",
-                list: [],
-            },
-        },
+        value: init,
     },
     reducers: {
         onChangeDatalist: (state, action) => {

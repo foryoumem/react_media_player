@@ -40,8 +40,8 @@ const MediaOrganize = () => {
     return(
         <DragDropContext onDragEnd={onDragEnd}>
             <Container>
-                <MediaColumn data={explorer.main.list} type="main" title="Loaded media" />
-                <MediaColumn data={explorer.play.list} type="play" title="Playlist" />
+                <MediaColumn media={explorer.main} />
+                <MediaColumn media={explorer.play} />
             </Container> 
         </DragDropContext>
     )
