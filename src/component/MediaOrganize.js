@@ -1,8 +1,11 @@
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd"
+import { DragDropContext, } from "react-beautiful-dnd"
 import styled from "styled-components"
 
 import { useSelector, useDispatch } from "react-redux"
 import MediaColumn from "./MediaColumn"
+import { useEffect } from "react"
+
+import { onChangeDatalist } from "../features/explorerSlice"
 
 const Container = styled.div`
 display: flex;
@@ -13,8 +16,9 @@ background-color: inherit;
 
 
 const MediaOrganize = () => {
+    console.log("MediaOrganize Component 실행")
     const medialist = useSelector(state => state.media.value)
-    const playlist = useSelector(state => state.play.value)
+    const explorer = useSelector(state => state.explorer.value)
     const dispatch = useDispatch()
 
     const onDragEnd = ({destination, source, draggableId, type}) => {
@@ -24,13 +28,20 @@ const MediaOrganize = () => {
         console.log("Source: ", source)
         console.log("Draggable ID: ", draggableId)
         console.log("Type: ", type)
-
     }
+
+    
+    useEffect(() => {
+        console.log("MediaOrganize Component 실행: useEffect()")
+        dispatch(onChangeDatalist([...medialist]))
+
+    }, [JSON.stringify(medialist)])
+
     return(
         <DragDropContext onDragEnd={onDragEnd}>
             <Container>
-                <MediaColumn data={medialist} type="media" title="Loaded media" />
-                <MediaColumn data={playlist} type="play" title="Playlist" />
+                <MediaColumn data={explorer.main.list} type="main" title="Loaded media" />
+                <MediaColumn data={explorer.play.list} type="play" title="Playlist" />
             </Container> 
         </DragDropContext>
     )

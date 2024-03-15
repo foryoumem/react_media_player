@@ -4,13 +4,21 @@ export const explorerSlice = createSlice({
     name: "explorer",
     initialState: {
         value: {
-            datalist: [],
-            playlist: [],
+            main: {
+                id: "Column-1",
+                title: "Loaded media",
+                list: [],
+            },
+            play: {
+                id: "Column-2",
+                title: "Playlist",
+                list: [],
+            },
         },
     },
     reducers: {
         onChangeDatalist: (state, action) => {
-            state.value.datalist = action.payload
+            state.value.main.list = action.payload
         }
 
     }

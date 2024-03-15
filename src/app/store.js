@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit"
 import { mediaSlice } from "../features/mediaSlice"
-import { playSlice } from "../features/playSlice"
+import { explorerSlice } from "../features/explorerSlice"
 
 export default configureStore({
     reducer: {
         media: mediaSlice.reducer,
-        play: playSlice.reducer,
+        explorer: explorerSlice.reducer,
     },
 })

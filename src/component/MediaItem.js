@@ -10,10 +10,10 @@ padding: 8px;
 background: ${props => props.$isDragging ? "lightgreen" : "white"};
 `
 
-const MediaItem = ({ data, index, type }) => {
+const MediaItem = ({ data, index }) => {
 
     return (
-        <Draggable draggableId={data.id} index={index} type={type}>
+        <Draggable draggableId={data.id} index={index}>
             {(provide, snapshot) => (
                 <Container ref={provide.innerRef} {...provide.dragHandleProps} {...provide.draggableProps}
                     $isDragging={snapshot.isDragging}>

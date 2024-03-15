@@ -7,6 +7,11 @@ display: flex;
 flex-direction: column;
 border: 1px solid lightgrey;
 border-radius: 2px;
+`
+
+const ItemList = styled.div`
+border: 1px solid lightgrey;
+border-radius: 2px;
 width: 250px;
 `
 
@@ -17,17 +22,19 @@ text-align: center;
 const MediaColumn = ({data, type, title}) => {
 
     return (
-        <Droppable droppableId={type}>
-            {(provided) => (
-                <Container ref={provided.innerRef} {...provided.droppableProps}>
-                    <Title>{title}</Title>
-                    {data.map((iter, index) => (
-                        <MediaItem key={iter.id} data={iter} index={index} type={`${type}-item`} />
-                    ))}
-                    {provided.placeholder}
-                </Container>
-            )}
-        </Droppable>
+        <Container>
+            <Title>{title}</Title>
+            <Droppable droppableId={type} type={"explorer"}>
+                {(provided) => (
+                    <ItemList ref={provided.innerRef} {...provided.droppableProps}>
+                        {data.map((iter, index) => (
+                            <MediaItem key={iter.id} data={iter} index={index} />
+                        ))}
+                        {provided.placeholder}
+                    </ItemList>
+                )}
+            </Droppable>
+        </Container>  
     )
 }
 
