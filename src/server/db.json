@@ -1,10 +1,13 @@
 {
     "media": [
-        {"id": "1", "title": "a.mp3", "link": "/music/a.mp3"},
-        {"id": "2", "title": "b.mp3", "link": "/music/b.mp3"},
-        {"id": "3", "title": "c.mp3", "link": "/music/c.mp3"},
-        {"id": "4", "title": "d.mp3", "link": "/music/d.mp3"},
-        {"id": "5", "title": "e.mp3", "link": "/music/e.mp3"},
-        {"id": "6", "title": "f.mp3", "link": "/music/f.mp3"}
+        {"id": "1", "title": "01. ALIVE.flac", "link": "https://drive.google.com/file/d/1cmsNTx3NnLUz3O4pJ7adPGso_ToqF5iY/view?usp=sharing"},
+        {"id": "2", "title": "01. はじまりのセツナ.flac", "link": "https://drive.google.com/file/d/1pxoJtF1IjwyNwNkKVt5PQ6pR74Z6PK-7/view?usp=sharing"},
+        {"id": "3", "title": "01. リンク.mp3", "link": "https://drive.google.com/file/d/1AKfjqKsVij0HlgRSIlvwPT7xIxaqkgj0/view?usp=drive_link"},
+        {"id": "4", "title": "4. HTTP-5 수업을 마치며.mp4", "link": "https://drive.google.com/file/d/10137bXiTV7uAA3QrAkmBDDXYGDbE180R/view?usp=drive_link"},
+        {"id": "5", "title": "2. HTTP-3 Request message.mp4", "link": "https://drive.google.com/file/d/1HLpfYqvZz2oN-O9xD4asSC8kGuNanj2z/view?usp=drive_link"},
+        {"id": "6", "title": "1. HTTP-2 소개.mp4", "link": "https://drive.google.com/file/d/1WZ-f7cHu9llWIaH3EOcFf41NpLOXGclc/view?usp=drive_link"},
+        {"id": "7", "title": "6. 기계들의 대화법 - REST API.mp4", "link": "https://drive.google.com/file/d/1c6Tjtn-zfKX2v4msMglsgA7Q4WWPFNYS/view?usp=drive_link"},
+        {"id": "8", "title": "5. HTTP-4 Response message.mp4", "link": "https://drive.google.com/file/d/1mw9xUdNEwXt5sEb1T_rrVnqlKml1R7CB/view?usp=drive_link"},
+        {"id": "9", "title": "0. HTTP-1 수업소개.mp4", "link": "https://drive.google.com/file/d/1uXneNKlNk2dIvv_3J3-r51iaBgzpfSxz/view?usp=drive_link"}
     ]
 }

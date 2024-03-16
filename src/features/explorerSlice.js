@@ -9,11 +9,13 @@ export const explorerSlice = createSlice({
     reducers: {
         onChangeDatalist: (state, action) => {
             state.value.main.list = action.payload
+        },
+        onChangePlaylist: (state, action) => {
+            state.value.play.list = action.payload
         }
-
     }
 })
 
-export const { onChangeDatalist } = explorerSlice.actions
+export const { onChangeDatalist, onChangePlaylist } = explorerSlice.actions
 
 export default explorerSlice.reducer
