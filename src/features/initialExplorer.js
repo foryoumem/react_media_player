@@ -13,4 +13,13 @@ export const init = {
         isRenderClone: false,
         list: [],
     },
+    save: {
+        droppableId: "play",
+        title: "Playlist",
+        isDropDisabled: false,
+        isRenderClone: false,
+        currentPlayIndex: 0,
+        currentPlaylistIndex: 0,
+        list: [],
+    }
 }

@@ -15,14 +15,14 @@ display: flex;
 flex-direction: column;
 border: 1px solid lightgrey;
 border-radius: 2px;
+margin: 5px;
+width: 25vw;
 `
 
 const ItemList = styled.div`
 flex-grow: 1;
 transition: background-color ease 0.2s;
 background-color: ${props => props.$isDraggingOver ? "palevioletred" : "white"};
-width: 250px;
-min-height: 100vh;
 `
 
 const Title = styled.h2`

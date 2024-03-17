@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import axios from "axios"
 
-const HOST = "http://localhost:6555"
+export const HOST = "http://localhost:6555"
 
 export const fetchMedia = createAsyncThunk(
     "media/fetchMedia",

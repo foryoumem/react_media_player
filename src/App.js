@@ -4,6 +4,7 @@ import Play from "./routes/Play"
 
 function App() {
   console.log("App Component 실행")
+  document.cookie = 'cookieName=cookieValue; SameSite=None; Secure'
 
   return (
     <div className="App">

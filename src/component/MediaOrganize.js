@@ -14,6 +14,7 @@ const Container = styled.div`
 display: flex;
 justify-content: space-around;
 background-color: inherit;
+height: 98vh;
 `
 
 const getId = (objA, objB) => {

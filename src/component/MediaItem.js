@@ -1,8 +1,12 @@
 import React from "react"
 import { Draggable } from "react-beautiful-dnd"
 import styled from "styled-components"
+import { Link } from "react-router-dom"
+
+const HOST = "http://localhost:3000"
 
 const Container = styled.div`
+display: flex;
 border: 1px solid lightgray;
 border-radius: 2px;
 margin: 4px;
@@ -25,10 +29,15 @@ background: lightblue;
 }
 `
 
+const ItemTitle = styled(Link)`
+    text-decoration: none;
+`
 
-
-//data-rbd-placeholder-context-id
-
+const ItemIcon = styled.img`
+width: 24px;
+height: 24px;
+margin-right: 4px;
+`
 
 const MediaItem = ({ data, index, useClone = false }) => {
 
@@ -45,7 +54,8 @@ const MediaItem = ({ data, index, useClone = false }) => {
                             {...provide.dragHandleProps}
                             $isDragging={snapshot.isDragging}
                         >
-                            {data.title}
+                            <ItemIcon src="music.png"/>
+                            <ItemTitle to={HOST + "/play"} state={data}>{data.title}</ItemTitle>
                         </Container>
                     )}
                 </Draggable>
