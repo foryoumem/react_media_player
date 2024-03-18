@@ -1,9 +1,9 @@
-import { DragDropContext, } from "react-beautiful-dnd"
+import { DragDropContext } from "react-beautiful-dnd"
 import styled from "styled-components"
 
 import { useSelector, useDispatch } from "react-redux"
-import MediaColumn from "./MediaColumn"
 import { useEffect } from "react"
+import MediaColumn from "./MediaColumn"
 
 import {
     onChangeDatalist,
@@ -25,7 +25,7 @@ const getId = (objA, objB) => {
 }
 
 
-const MediaOrganize = () => {
+const MediaExplorer = () => {
     console.log("MediaOrganize Component 실행")
 
     const medialist = useSelector(state => state.media.value)
@@ -74,7 +74,7 @@ const MediaOrganize = () => {
 
     
     useEffect(() => {
-        console.log("MediaOrganize Component 실행: useEffect()")
+        console.log("MediaExplorer Component 실행: useEffect()")
         dispatch(onChangeDatalist([...medialist]))
 
     }, [JSON.stringify(medialist)])
@@ -89,4 +89,4 @@ const MediaOrganize = () => {
     )
 }
 
-export default MediaOrganize
+export default MediaExplorer

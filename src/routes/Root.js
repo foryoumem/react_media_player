@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import { fetchMedia } from "../features/mediaSlice"
 import { useDispatch } from "react-redux"
 
-import MediaOrganize from "../component/MediaOrganize"
+import MediaExplorer from "../component/MediaExplorer"
 
 export default function Root() {
     console.log("Root Component 실행")
@@ -21,7 +21,7 @@ export default function Root() {
 
     return (
         <div>
-            <MediaOrganize />
+            <MediaExplorer />
         </div>
     )
 }

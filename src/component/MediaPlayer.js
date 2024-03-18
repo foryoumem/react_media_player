@@ -1,3 +1,4 @@
+import ReactPlayer from "react-player"
 import styled from "styled-components"
 
 const Container = styled.div`
@@ -8,15 +9,15 @@ margin: 5px;
 width: 75vw;
 `
 
-const MediaBox = () => {
+const MediaPlayer = ({url}) => {
 
     return (
         <Container>
-
+            <ReactPlayer url={url}/>
         </Container>
     )
 
 }
 
 
-export default MediaBox
+export default MediaPlayer

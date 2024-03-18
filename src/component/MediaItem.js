@@ -6,19 +6,20 @@ import { Link } from "react-router-dom"
 const HOST = "http://localhost:3000"
 
 const Container = styled.div`
-display: flex;
-border: 1px solid lightgray;
-border-radius: 2px;
-margin: 4px;
-padding: 8px;
-background: ${props => props.$isDragging ? "lightgreen" : "white"};
+    display: flex;
+    border: 1px solid lightgray;
+    border-radius: 2px;
+    margin: 4px;
+    padding: 8px;
+    background: ${props => props.$isDragging ? "lightgreen" : "white"};
 `
 const ContainerCopy = styled.div`
-border: 1px solid lightgrey;
-border-radius: 2px;
-margin: 4px;
-padding: 8px;
-background: lightblue;
+    display: flex;
+    border: 1px solid lightgrey;
+    border-radius: 2px;
+    margin: 4px;
+    padding: 8px;
+    background: lightblue;
 
 & ~ ${Container} {
     transform: none !important;
@@ -34,19 +35,50 @@ const ItemTitle = styled(Link)`
 `
 
 const ItemIcon = styled.img`
-width: 24px;
-height: 24px;
-margin-right: 4px;
+    width: 24px;
+    height: 24px;
+    margin-right: 4px;
 `
+
+const getItemIcon = (title) => {
+    const ext = title.split(".").pop()
+
+    if (ext === "mp3" || ext === "flac")
+        return "app-music.png"
+    if (ext === "mp4" || ext === "mkv")
+        return "app-video.png"
+
+    return "rk-unknown.png"
+}
+
+const MediaItemLayout = ({data}) => {
+    return (
+        <React.Fragment>
+            <ItemIcon src={getItemIcon(data.title)}></ItemIcon>
+            <ItemTitle to={HOST + "/play"} state={data}>{data.title}</ItemTitle>
+        </React.Fragment>
+    )
+}
+
+export const MediaItemCloneLayout = ({data}) => {
+    return (
+        <React.Fragment>
+            <ItemIcon src={getItemIcon(data.title)}></ItemIcon>
+            <div>{data.title}</div>
+        </React.Fragment>
+    )
+}
 
 const MediaItem = ({ data, index, useClone = false }) => {
 
     return (
         <React.Fragment>
             {
-                useClone ? <ContainerCopy>
-                    {data.title}
-                </ContainerCopy> : <Draggable draggableId={data.id} index={index}>
+                useClone ? 
+                <ContainerCopy>
+                    <MediaItemCloneLayout data={data} />
+                </ContainerCopy> :
+                <Draggable draggableId={data.id} index={index}>
                     {(provide, snapshot) => (
                         <Container
                             ref={provide.innerRef}
@@ -54,8 +86,7 @@ const MediaItem = ({ data, index, useClone = false }) => {
                             {...provide.dragHandleProps}
                             $isDragging={snapshot.isDragging}
                         >
-                            <ItemIcon src="music.png"/>
-                            <ItemTitle to={HOST + "/play"} state={data}>{data.title}</ItemTitle>
+                            <MediaItemLayout data={data} />
                         </Container>
                     )}
                 </Draggable>

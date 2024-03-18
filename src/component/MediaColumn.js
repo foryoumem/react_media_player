@@ -1,8 +1,9 @@
 import styled from "styled-components"
-import MediaItem from "./MediaItem"
+import MediaItem, { MediaItemCloneLayout } from "./MediaItem"
 import { Droppable } from "react-beautiful-dnd"
 
 const RenderCloneContainer = styled.div`
+display: flex;
 border: 1px solid lightgray;
 border-radius: 2px;
 margin: 4px;
@@ -38,7 +39,7 @@ const renderClone = (items) => (provided, snapshot, rubric) => {
             {...provided.dragHandleProps}
             style={provided.draggableProps.style}
         >
-            {item.title}
+            <MediaItemCloneLayout data={item}/>
         </RenderCloneContainer>
     )
 }
@@ -50,15 +51,15 @@ const MediaColumn = ({media}) => {
         <Container>
             <Title>{media.title}</Title>
             <Droppable
-            droppableId={media.droppableId}
-            type="COLUMN"
-            isDropDisabled={media.isDropDisabled}
-            renderClone={media.isRenderClone ? renderClone(media.list) : null} 
+                droppableId={media.droppableId}
+                type="COLUMN"
+                isDropDisabled={media.isDropDisabled}
+                renderClone={media.isRenderClone ? renderClone(media.list) : null}
             >
                 {(provided, snapshot) => (
                     <ItemList
-                    ref={provided.innerRef}
-                    $isDraggingOver={snapshot.isDraggingOver}
+                        ref={provided.innerRef}
+                        $isDraggingOver={snapshot.isDraggingOver}
                     >
                         {media.list.map((item, index) => {
                             const useClone = item.id === snapshot.draggingFromThisWith
