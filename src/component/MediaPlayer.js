@@ -13,7 +13,14 @@ const MediaPlayer = ({url}) => {
 
     return (
         <Container>
-            <ReactPlayer url={url}/>
+            <iframe
+                width="560"
+                height="315"
+                src="https://youtu.be/g_wuMTZnoYo"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                title="Embedded youtube"
+            />
         </Container>
     )
 

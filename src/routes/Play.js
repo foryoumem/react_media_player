@@ -15,7 +15,7 @@ export default function Play() {
 
     useEffect(() => {
         dispatch(onChangeSavelist([...save.list, media.state]))
-    }, [JSON.stringify(media.state)])
+    }, [media.state])
 
     return (
         <div>
