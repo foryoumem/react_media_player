@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { DragDropContext } from "react-beautiful-dnd"
 import { useSelector } from "react-redux"
 import MediaColumn from "./MediaColumn"
@@ -8,6 +8,7 @@ import { onChangeCurrentPlaylist } from "../features/explorerSlice"
 import { useDispatch } from "react-redux"
 import MediaCombobox from "./MediaCombobox"
 import { useLocation } from "react-router-dom"
+import { initColumn } from "../features/initialExplorer"
 
 const Container = styled.div`
 display: flex;
@@ -24,16 +25,20 @@ width: 30vw;
 `
 
 
-const MediaPlaylist = () => {
+const MediaPlaylist = ({column}) => {
     
-    const media = useSelector(state => state.explorer.value.save)
-    const dispatch = useDispatch()
-    const location = useLocation()
-    const type = location.state.type === "non-playlist"
-    const play = type ? media.nonPlaylist : media.playlist[media.currentPlaylistIndex]
+    const [play, setPlay] = useState(column)
+
+    console.log("MediaPlaylist Component 실행:")
+    useEffect(() => {
+        console.log("MediaPlaylist Component 실행: useEffect()")
+        setPlay(column)
+    }, [column])
 
     const onDragEnd = ({destination, source}) => {
         if (!destination) return
+        if (destination.droppableId === source.droppableId &&
+            destination.index === source.index) return
 
         if (source.droppableId === "play" && destination.droppableId === "play") {
             console.log("Play to Play: Swap")
@@ -42,18 +47,16 @@ const MediaPlaylist = () => {
             const [removed] =  arr.splice(source.index, 1)
             arr.splice(destination.index, 0, removed)
 
-        
-            type ? dispatch() : dispatch(onChangeCurrentPlaylist(arr))
-
+            setPlay({...play, list: arr})
             return
         }
     }
-    
+
     return (
         <DragDropContext onDragEnd={onDragEnd}>
             <Container>
                 {
-                    play.list.length ? <MediaPlayer url={play.list[media.currentPlayIndex].linkl} /> :
+                    play.list.length ? <MediaPlayer url={play.list[play.currentPlayIndex].link} /> :
                     <MediaPlayer url={null}/>
                 }
                 <ListContainer>

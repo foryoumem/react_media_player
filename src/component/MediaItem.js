@@ -2,6 +2,7 @@ import React from "react"
 import { Draggable } from "react-beautiful-dnd"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
+import { initColumn } from "../features/initialExplorer"
 
 const HOST = "http://localhost:3000"
 
@@ -52,10 +53,16 @@ const getItemIcon = (title) => {
 }
 
 const MediaItemLayout = ({data}) => {
+
+    const play = {...initColumn}
+    play.droppableId = "play"
+    play.title = "Non-playlist media"
+    play.list = [data]
+
     return (
         <React.Fragment>
             <ItemIcon src={getItemIcon(data.title)}></ItemIcon>
-            <ItemTitle to={HOST + "/play"} state={{type: "non-playlist", data: data}}>{data.title}</ItemTitle>
+            <ItemTitle to={HOST + "/play"} state={{type: "non-playlist", data: play}}>{data.title}</ItemTitle>
         </React.Fragment>
     )
 }

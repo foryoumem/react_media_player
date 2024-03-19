@@ -33,7 +33,7 @@ const MediaCombobox = () => {
         console.log(playIndex)
         if (playIndex === -1) return
 
-        navigate("/play", { state: {type: "playlist", index: playIndex} })
+        navigate("/play", { state: {type: "playlist", data: {...save.playlist[playIndex], currentPlayIndex: 0}}})
     }
 
     return (

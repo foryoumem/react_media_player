@@ -1,3 +1,12 @@
+export const initColumn = {
+    droppableId: "",
+    title: "",
+    isDropDisabled: false,
+    isRenderClone: false,
+    currentPlayIndex: 0,
+    list: [],
+}
+
 export const init = {
     main: {
         droppableId: "main",
@@ -16,13 +25,6 @@ export const init = {
     save: {
         currentPlayIndex: 0,
         currentPlaylistIndex: 0,
-        nonPlaylist: {
-            droppableId: "view",
-            title: "Non-playlist media",
-            isDropDisabled: false,
-            isRenderClone: false,
-            list: [],
-        },
         playlist: [],
     }
 }
