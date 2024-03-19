@@ -14,12 +14,15 @@ export const init = {
         list: [],
     },
     save: {
-        droppableId: "play",
-        title: "Playlist",
-        isDropDisabled: false,
-        isRenderClone: false,
         currentPlayIndex: 0,
         currentPlaylistIndex: 0,
-        list: [],
+        nonPlaylist: {
+            droppableId: "view",
+            title: "Non-playlist media",
+            isDropDisabled: false,
+            isRenderClone: false,
+            list: [],
+        },
+        playlist: [],
     }
 }

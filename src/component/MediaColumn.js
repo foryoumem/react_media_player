@@ -16,8 +16,7 @@ display: flex;
 flex-direction: column;
 border: 1px solid lightgrey;
 border-radius: 2px;
-margin: 5px;
-width: 25vw;
+height: 100%;
 `
 
 const ItemList = styled.div`
@@ -26,8 +25,11 @@ transition: background-color ease 0.2s;
 background-color: ${props => props.$isDraggingOver ? "palevioletred" : "white"};
 `
 
-const Title = styled.h2`
+const Title = styled.div`
+font-size: xx-large;
 text-align: center;
+background-color: silver;
+padding-bottom: 4px;
 `
 
 const renderClone = (items) => (provided, snapshot, rubric) => {
@@ -81,50 +83,3 @@ const MediaColumn = ({media}) => {
 }
 
 export default MediaColumn
-
-
-/*
-
-
-{(provided, snapshot) => (
-                        <ItemList
-                        ref={provided.innerRef} {...provided.droppableProps}
-                        >
-                            {media.list.map((item, index) => {
-                                const useClone = item.id === snapshot.draggingFromThisWith
-                                return (
-                                    <React.Fragment key=item.id>
-    
-                                    </React.Fragment>
-                                )
-                            })}
-                        </ItemList>
-                    )}
-
-
-const MediaColumn = ({media}) => {
-
-    return (
-        <Container>
-            <Title>{media.title}</Title>
-            <Droppable
-                droppableId={media.droppableId}
-                type={"explorer"}
-                isDropDisabled={media.isDropDisabled}
-            >
-                {(provided, snapshot) => (
-                    <ItemList ref={provided.innerRef} {...provided.droppableProps}
-                        $isDraggingOver={snapshot.isDraggingOver}>
-                        {media.list.map((iter, index) => (
-                            <MediaItem key={iter.id} data={iter} index={index} />
-                        ))}
-                        {provided.placeholder}
-                    </ItemList>
-                )}
-            </Droppable>
-        </Container>
-    )
-}
-
-
-                    */

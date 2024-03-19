@@ -9,12 +9,28 @@ import {
     onChangeDatalist,
     onChangePlaylist,
 } from "../features/explorerSlice"
+import MediaCombobox from "./MediaCombobox"
+import MediaPlaylistCreator from "./MediaPlaylistCreator"
 
 const Container = styled.div`
 display: flex;
 justify-content: space-around;
 background-color: inherit;
 height: 98vh;
+`
+
+const MainContainer = styled.div`
+display: flex;
+flex-direction: column;
+width: 30vw;
+height: 100%;
+`
+
+const PlayContainer = styled.div`
+display: flex;
+flex-direction: column;
+width: 30vw;
+height: 100%;
 `
 
 const getId = (objA, objB) => {
@@ -82,8 +98,14 @@ const MediaExplorer = () => {
     return(
         <DragDropContext onDragEnd={onDragEnd}>
             <Container>
-                <MediaColumn media={explorer.main} />
-                <MediaColumn media={explorer.play} />
+                <MainContainer>
+                    <MediaColumn media={explorer.main} />
+                </MainContainer>
+                <PlayContainer>
+                    <MediaPlaylistCreator />
+                    <MediaCombobox />
+                    <MediaColumn media={explorer.play} />
+                </PlayContainer>
             </Container> 
         </DragDropContext>
     )

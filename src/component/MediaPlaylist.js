@@ -4,8 +4,10 @@ import { useSelector } from "react-redux"
 import MediaColumn from "./MediaColumn"
 import styled from "styled-components"
 import MediaPlayer from "./MediaPlayer"
-import { onChangeSavelist } from "../features/explorerSlice"
+import { onChangeCurrentPlaylist } from "../features/explorerSlice"
 import { useDispatch } from "react-redux"
+import MediaCombobox from "./MediaCombobox"
+import { useLocation } from "react-router-dom"
 
 const Container = styled.div`
 display: flex;
@@ -14,13 +16,23 @@ background-color: inherit;
 height: 98vh;
 `
 
+const ListContainer = styled.div`
+display: flex;
+flex-direction: column;
+margin: 5px;
+width: 30vw;
+`
+
+
 const MediaPlaylist = () => {
     
-    const play = useSelector(state => state.explorer.value.save)
+    const media = useSelector(state => state.explorer.value.save)
     const dispatch = useDispatch()
-    console.log(play)
+    const location = useLocation()
+    const type = location.state.type === "non-playlist"
+    const play = type ? media.nonPlaylist : media.playlist[media.currentPlaylistIndex]
 
-    const onDragEnd = ({destination, source, draggableId, type}) => {
+    const onDragEnd = ({destination, source}) => {
         if (!destination) return
 
         if (source.droppableId === "play" && destination.droppableId === "play") {
@@ -30,7 +42,8 @@ const MediaPlaylist = () => {
             const [removed] =  arr.splice(source.index, 1)
             arr.splice(destination.index, 0, removed)
 
-            dispatch(onChangeSavelist(arr))
+        
+            type ? dispatch() : dispatch(onChangeCurrentPlaylist(arr))
 
             return
         }
@@ -39,8 +52,14 @@ const MediaPlaylist = () => {
     return (
         <DragDropContext onDragEnd={onDragEnd}>
             <Container>
-                <MediaPlayer url={play.list.length ? play.list[play.currentPlayIndex].link : null} />
-                <MediaColumn media={play} />
+                {
+                    play.list.length ? <MediaPlayer url={play.list[media.currentPlayIndex].linkl} /> :
+                    <MediaPlayer url={null}/>
+                }
+                <ListContainer>
+                    <MediaCombobox />
+                    <MediaColumn media={play} />
+                </ListContainer>      
             </Container>
         </DragDropContext>
     )
