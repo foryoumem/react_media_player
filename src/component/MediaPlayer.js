@@ -13,7 +13,6 @@ width: 70vw;
 `
 
 
-
 const MediaPlayer = ({url}) => {
 
 
