@@ -1,5 +1,8 @@
-import React from "react"
+import React, { useEffect, useRef, useState } from "react"
+import ReactPlayer from "react-player"
+import { useSelector } from "react-redux"
 import styled from "styled-components"
+import { getPointerPosition } from "video.js/dist/types/utils/dom"
 
 const Container = styled.div`
 display: flex;
@@ -9,14 +12,22 @@ margin: 5px;
 width: 70vw;
 `
 
+
+
 const MediaPlayer = ({url}) => {
+
+
+    const select = useSelector(state => state.explorer.value.select)
+    const play = select.options[select.currentIndex].list
 
     return (
         <Container>
             <iframe
-                src={url}
+                src={play[select.currentPlayMediaIndex].link}
+                data-index={0}
                 width="100%"
-                allow="autoplay"
+                allow="autoplay; encripted-media"
+                allowFullScreen
             ></iframe>
         </Container>
     )
@@ -42,4 +53,17 @@ sandbox="allow-storage-access-by-user-activation
 <video controls width="250">
                 <source src={url} type="video/mp4" />
             </video>
+<iframe
+                ref={iframeRef}
+                src={play[select.currentPlayMediaIndex].link}
+                data-index={0}
+                width="100%"
+                allow="autoplay; encripted-media"
+                allowFullScreen
+            ></iframe>
+
+            <Container>
+            <ReactPlayer url={play[select.currentPlayMediaIndex].link} />
+        </Container>
+
 */

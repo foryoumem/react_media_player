@@ -1,9 +1,11 @@
+import { onLoadPlaylist } from "../app/storage"
+
 export const initColumn = {
-    droppableId: "",
-    title: "",
+    droppableId: "play",
+    title: "Playlist",
     isDropDisabled: false,
     isRenderClone: false,
-    currentPlayIndex: 0,
+    currentPlayMediaIndex: 0,
     list: [],
 }
 
@@ -22,9 +24,9 @@ export const init = {
         isRenderClone: false,
         list: [],
     },
-    save: {
-        currentPlayIndex: 0,
-        currentPlaylistIndex: 0,
-        playlist: [],
+    select: {
+        currentPlayMediaIndex: 0,
+        currentIndex: 0,
+        options: onLoadPlaylist(),
     }
 }

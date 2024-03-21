@@ -5,12 +5,10 @@ import { useSelector, useDispatch } from "react-redux"
 import { useEffect } from "react"
 import MediaColumn from "./MediaColumn"
 
-import {
-    onChangeDatalist,
-    onChangePlaylist,
-} from "../features/explorerSlice"
 import MediaCombobox from "./MediaCombobox"
 import MediaPlaylistCreator from "./MediaPlaylistCreator"
+import { onUpdatePlaylistIndexOf } from "../app/storage"
+import { onChangeDatalist, onChangeSelectOption } from "../features/explorerSlice"
 
 const Container = styled.div`
 display: flex;
@@ -42,18 +40,23 @@ const getId = (objA, objB) => {
 
 
 const MediaExplorer = () => {
-    console.log("MediaOrganize Component 실행")
+    console.log("MediaExplorer Component")
 
     const medialist = useSelector(state => state.media.value)
     const explorer = useSelector(state => state.explorer.value)
     const dispatch = useDispatch()
+    const main = explorer.main.list
+    const play = explorer.select.options[explorer.select.currentIndex].list // Reducer 생성시 데이터가 없다면 1개의 요소를 넣어서 예외처리 안함
+
+    useEffect(() => {
+        console.log("MediaExplorer Component: useEffect()")
+        dispatch(onChangeDatalist(medialist))
+        onUpdatePlaylistIndexOf(play)
+    }, [medialist, play])
 
     const onDragEnd = ({destination, source, draggableId, type}) => {
         if (!destination) return
 
-        const main = explorer.main.list
-        const play = explorer.play.list
-        
         if (source.droppableId === "main" && destination.droppableId === "play") {
             console.log("Main to Play: Add")
 
@@ -62,9 +65,9 @@ const MediaExplorer = () => {
             const item = {...droppedTarget, id: id}
 
             const arr = [...play]
-            arr.splice(destination.index, 0, item)           
+            arr.splice(destination.index, 0, item)  
             
-            dispatch(onChangePlaylist(arr))
+            dispatch(onChangeSelectOption(arr))
 
             return
         }
@@ -76,7 +79,7 @@ const MediaExplorer = () => {
             const [removed] =  arr.splice(source.index, 1)
             arr.splice(destination.index, 0, removed)
 
-            dispatch(onChangePlaylist(arr))
+            dispatch(onChangeSelectOption(arr))
 
             return
         }
@@ -88,13 +91,6 @@ const MediaExplorer = () => {
         console.log("Type: ", type)
     }
 
-    
-    useEffect(() => {
-        console.log("MediaExplorer Component 실행: useEffect()")
-        dispatch(onChangeDatalist([...medialist]))
-
-    }, [JSON.stringify(medialist)])
-
     return(
         <DragDropContext onDragEnd={onDragEnd}>
             <Container>
@@ -104,7 +100,7 @@ const MediaExplorer = () => {
                 <PlayContainer>
                     <MediaPlaylistCreator />
                     <MediaCombobox />
-                    <MediaColumn media={explorer.play} />
+                    <MediaColumn media={explorer.select.options[explorer.select.currentIndex]} />
                 </PlayContainer>
             </Container> 
         </DragDropContext>

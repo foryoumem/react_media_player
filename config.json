@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+      "jsx": "react",
+      "lib": ["es6", "dom"],
+      "rootDir": "src",
+      "module": "commonjs",
+      "esModuleInterop": true,
+      "target": "es5",
+      "sourceMap": true,
+      "moduleResolution": "node",
+      "noImplicitReturns": true,
+      "noImplicitThis": true,
+      "noImplicitAny": true,
+      "strictNullChecks": true
+    },
+    "include": [
+      "./src"
+    ],
+    "exclude": [
+      "node_modules",
+      "build"
+    ]
+  }
+  출처: https://victory-ju.tistory.com/entry/React-Module-not-found-Error-Cant-resolve-In-오류-TypeScript-React [아 그거 뭐였지:티스토리]

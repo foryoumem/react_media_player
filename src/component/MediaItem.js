@@ -62,7 +62,7 @@ const MediaItemLayout = ({data}) => {
     return (
         <React.Fragment>
             <ItemIcon src={getItemIcon(data.title)}></ItemIcon>
-            <ItemTitle to={HOST + "/play"} state={{type: "non-playlist", data: play}}>{data.title}</ItemTitle>
+            <ItemTitle to={HOST + "/play"} state={{type: "non-playlist", playlist: play, index: -1, currentPlayMediaIndex: 0}}>{data.title}</ItemTitle>
         </React.Fragment>
     )
 }

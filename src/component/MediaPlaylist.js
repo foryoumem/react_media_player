@@ -4,11 +4,12 @@ import { useSelector } from "react-redux"
 import MediaColumn from "./MediaColumn"
 import styled from "styled-components"
 import MediaPlayer from "./MediaPlayer"
-import { onChangeCurrentPlaylist } from "../features/explorerSlice"
+import { onChangeCurrentPlaylist, onChangeSelectOption } from "../features/explorerSlice"
 import { useDispatch } from "react-redux"
 import MediaCombobox from "./MediaCombobox"
 import { useLocation } from "react-router-dom"
 import { initColumn } from "../features/initialExplorer"
+import { onLoadPlaylist, onUpdatePlaylistIndexOf } from "../app/storage"
 
 const Container = styled.div`
 display: flex;
@@ -25,15 +26,17 @@ width: 30vw;
 `
 
 
-const MediaPlaylist = ({column}) => {
+const MediaPlaylist = () => {
     
-    const [play, setPlay] = useState(column)
+    const explorer = useSelector(state => state.explorer.value)
+    const play = explorer.select.options[explorer.select.currentIndex].list
+    const dispatch = useDispatch()
 
-    console.log("MediaPlaylist Component 실행:")
+    console.log("MediaPlaylist Component")
     useEffect(() => {
-        console.log("MediaPlaylist Component 실행: useEffect()")
-        setPlay(column)
-    }, [column])
+        console.log("MediaPlaylist Component: useEffect()")
+        onUpdatePlaylistIndexOf(play)
+    }, [play])
 
     const onDragEnd = ({destination, source}) => {
         if (!destination) return
@@ -43,11 +46,11 @@ const MediaPlaylist = ({column}) => {
         if (source.droppableId === "play" && destination.droppableId === "play") {
             console.log("Play to Play: Swap")
 
-            const arr = [...play.list]
+            const arr = [...play]
             const [removed] =  arr.splice(source.index, 1)
             arr.splice(destination.index, 0, removed)
 
-            setPlay({...play, list: arr})
+            dispatch(onChangeSelectOption(arr))
             return
         }
     }
@@ -56,12 +59,12 @@ const MediaPlaylist = ({column}) => {
         <DragDropContext onDragEnd={onDragEnd}>
             <Container>
                 {
-                    play.list.length ? <MediaPlayer url={play.list[play.currentPlayIndex].link} /> :
+                    play.length ? <MediaPlayer url={play[explorer.select.currentPlayMediaIndex].link} /> :
                     <MediaPlayer url={null}/>
                 }
                 <ListContainer>
                     <MediaCombobox />
-                    <MediaColumn media={play} />
+                    <MediaColumn media={explorer.select.options[explorer.select.currentIndex]} />
                 </ListContainer>      
             </Container>
         </DragDropContext>
