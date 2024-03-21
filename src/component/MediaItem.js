@@ -3,6 +3,8 @@ import { Draggable } from "react-beautiful-dnd"
 import styled from "styled-components"
 import { Link, useLocation } from "react-router-dom"
 import { initColumn } from "../features/initialExplorer"
+import { setPlayMediaIndex } from "../features/explorerSlice"
+import { useDispatch } from "react-redux"
 
 const HOST = "http://localhost:3000"
 
@@ -67,6 +69,21 @@ const MediaItemLayout = ({data}) => {
     )
 }
 
+const MediaItemLayoutPlaylist = ({data, index}) => {
+
+    const dispatch = useDispatch()
+    const onClick = () => {
+        dispatch(setPlayMediaIndex(index))
+    }
+
+    return (
+        <React.Fragment>
+            <ItemIcon src={getItemIcon(data.title)}></ItemIcon>
+            <div onClick={onClick}>{data.title}</div>
+        </React.Fragment>
+    )
+}
+
 export const MediaItemCloneLayout = ({data}) => {
     return (
         <React.Fragment>
@@ -76,8 +93,12 @@ export const MediaItemCloneLayout = ({data}) => {
     )
 }
 
-const MediaItem = ({ data, index, useClone = false }) => {
-
+const MediaItem = ({ 
+    data, 
+    index,
+    useClone = false, 
+    type = "explorer"
+}) => {
     return (
         <React.Fragment>
             {
@@ -93,7 +114,11 @@ const MediaItem = ({ data, index, useClone = false }) => {
                             {...provide.dragHandleProps}
                             $isDragging={snapshot.isDragging}
                         >
-                            <MediaItemLayout data={data} />
+                            {
+                                type === "explorer" ?
+                                    <MediaItemLayout data={data} /> :
+                                    <MediaItemLayoutPlaylist data={data} index={index}/>   
+                            }                                     
                         </Container>
                     )}
                 </Draggable>

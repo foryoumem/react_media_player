@@ -19,14 +19,6 @@ export const init = {
         isRenderClone: true,
         list: [],
     },
-    play: {
-        droppableId: "play",
-        type: "explorer",
-        title: "Playlist",
-        isDropDisabled: false,
-        isRenderClone: false,
-        list: [],
-    },
     select: {
         currentPlayMediaIndex: 0,
         currentIndex: 0,

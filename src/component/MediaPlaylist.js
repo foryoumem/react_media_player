@@ -4,7 +4,7 @@ import { useSelector } from "react-redux"
 import MediaColumn from "./MediaColumn"
 import styled from "styled-components"
 import MediaPlayer from "./MediaPlayer"
-import { onChangeCurrentPlaylist, onChangeSelectOption } from "../features/explorerSlice"
+import { onChangeCurrentPlaylist, onChangeSelectOption, setPlayMediaIndex } from "../features/explorerSlice"
 import { useDispatch } from "react-redux"
 import MediaCombobox from "./MediaCombobox"
 import { useLocation } from "react-router-dom"
@@ -64,7 +64,7 @@ const MediaPlaylist = () => {
                 }
                 <ListContainer>
                     <MediaCombobox />
-                    <MediaColumn media={select.options[select.currentIndex]} />
+                    <MediaColumn media={select.options[select.currentIndex]} type="playlist" />
                 </ListContainer>      
             </Container>
         </DragDropContext>

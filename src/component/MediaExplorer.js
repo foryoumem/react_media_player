@@ -49,13 +49,34 @@ const MediaExplorer = () => {
     const play = explorer.select.options[explorer.select.currentIndex].list // Reducer 생성시 데이터가 없다면 1개의 요소를 넣어서 예외처리 안함
 
     useEffect(() => {
-        console.log("MediaExplorer Component: useEffect()")
+        console.log("MediaExplorer Component: useEffect(): medialist")
         dispatch(onChangeDatalist(medialist))
+    }, [medialist])
+
+    useEffect(() => {
+        console.log("MediaExplorer Component: useEffect(): play")
         onUpdatePlaylistIndexOf(explorer.select.currentIndex, play)
-    }, [medialist, play])
+    }, [play])
 
     const onDragEnd = ({destination, source, draggableId, type}) => {
-        if (!destination) return
+        if (!destination) {
+            if (source.droppableId === "play") {
+                console.log("Delete")
+                const arr = [...play]
+                const [removed] =  arr.splice(source.index, 1)
+                dispatch(onChangeSelectOption(arr))
+            }
+            return
+        }
+
+        if (destination.droppableId === source.droppableId &&
+            destination.index === source.index) return
+
+        
+        console.log("Destination: ", destination)
+        console.log("Source: ", source)
+        console.log("Draggable ID: ", draggableId)
+        console.log("Type: ", type)
 
         if (source.droppableId === "main" && destination.droppableId === "play") {
             console.log("Main to Play: Add")
@@ -83,24 +104,18 @@ const MediaExplorer = () => {
 
             return
         }
-
-
-        console.log("Destination: ", destination)
-        console.log("Source: ", source)
-        console.log("Draggable ID: ", draggableId)
-        console.log("Type: ", type)
     }
 
     return(
         <DragDropContext onDragEnd={onDragEnd}>
             <Container>
                 <MainContainer>
-                    <MediaColumn media={explorer.main} />
+                    <MediaColumn media={explorer.main} type="explorer" />
                 </MainContainer>
                 <PlayContainer>
                     <MediaPlaylistCreator />
                     <MediaCombobox />
-                    <MediaColumn media={explorer.select.options[explorer.select.currentIndex]} />
+                    <MediaColumn media={explorer.select.options[explorer.select.currentIndex]} type="explorer" />
                 </PlayContainer>
             </Container> 
         </DragDropContext>

@@ -42,6 +42,8 @@ export const onLoadPlaylist = () => {
     
     // Playlist가 Local Storage에 없을 경우
     const list = [{...initColumn, id: 0}]
+    console.log("onLoadPlaylist: data not found")
+    console.log(list)
     localStorage.setItem(PLAYLIST, parseStringify(list))
     return list
 }
@@ -70,6 +72,6 @@ export const onUpdatePlaylist = (playlist) => {
 */
 export const onUpdatePlaylistIndexOf = (index, playlist) =>{
     const current = onLoadPlaylist()
-    current[index] = parseJson(playlist)
+    current[index].list = parseJson(playlist)
     localStorage.setItem(PLAYLIST, parseStringify(current))
 }

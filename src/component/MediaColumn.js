@@ -47,14 +47,14 @@ const renderClone = (items) => (provided, snapshot, rubric) => {
 }
 
 
-const MediaColumn = ({media}) => {
+const MediaColumn = ({media, type}) => {
 
     return (
         <Container>
             <Title>{media.title}</Title>
             <Droppable
                 droppableId={media.droppableId}
-                type="COLUMN"
+                type={type}
                 isDropDisabled={media.isDropDisabled}
                 renderClone={media.isRenderClone ? renderClone(media.list) : null}
             >
@@ -71,6 +71,7 @@ const MediaColumn = ({media}) => {
                                     data={item}
                                     index={index}
                                     useClone={media.isRenderClone ? useClone : false}
+                                    type={type}
                                 />
                             )
                         })}
