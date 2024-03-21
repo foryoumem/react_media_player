@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react"
 import ReactPlayer from "react-player"
 import { useSelector } from "react-redux"
 import styled from "styled-components"
-import { getPointerPosition } from "video.js/dist/types/utils/dom"
 
 const Container = styled.div`
 display: flex;

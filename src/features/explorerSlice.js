@@ -25,6 +25,13 @@ export const explorerSlice = createSlice({
         setCurrentSelectOption: (state, action) => {
             state.value.select.currentIndex = action.payload
         },
+        onClickMedia: (state, action) => {
+            if (action.payload.type === "explorer") {
+
+            } else {
+                state.value.select.currentIndex = action.payload.index
+            }
+        }
     }
 })
 
@@ -35,6 +42,7 @@ export const {
     onChangeSelectOption,
     appendSelectOption,
     setCurrentSelectOption,
+    onClickMedia,
 } = explorerSlice.actions
 
 export default explorerSlice.reducer

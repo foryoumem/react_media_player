@@ -1,7 +1,7 @@
 import React from "react"
 import { Draggable } from "react-beautiful-dnd"
 import styled from "styled-components"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import { initColumn } from "../features/initialExplorer"
 
 const HOST = "http://localhost:3000"

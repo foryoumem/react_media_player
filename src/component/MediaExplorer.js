@@ -51,7 +51,7 @@ const MediaExplorer = () => {
     useEffect(() => {
         console.log("MediaExplorer Component: useEffect()")
         dispatch(onChangeDatalist(medialist))
-        onUpdatePlaylistIndexOf(play)
+        onUpdatePlaylistIndexOf(explorer.select.currentIndex, play)
     }, [medialist, play])
 
     const onDragEnd = ({destination, source, draggableId, type}) => {

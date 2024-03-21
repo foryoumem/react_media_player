@@ -27,15 +27,15 @@ width: 30vw;
 
 
 const MediaPlaylist = () => {
+    console.log("MediaPlaylist Component")
     
-    const explorer = useSelector(state => state.explorer.value)
-    const play = explorer.select.options[explorer.select.currentIndex].list
+    const select = useSelector(state => state.explorer.value.select)
+    const play = select.options[select.currentIndex].list
     const dispatch = useDispatch()
 
-    console.log("MediaPlaylist Component")
     useEffect(() => {
         console.log("MediaPlaylist Component: useEffect()")
-        onUpdatePlaylistIndexOf(play)
+        onUpdatePlaylistIndexOf(select.currentIndex, play)
     }, [play])
 
     const onDragEnd = ({destination, source}) => {
@@ -59,12 +59,12 @@ const MediaPlaylist = () => {
         <DragDropContext onDragEnd={onDragEnd}>
             <Container>
                 {
-                    play.length ? <MediaPlayer url={play[explorer.select.currentPlayMediaIndex].link} /> :
+                    play.length ? <MediaPlayer url={play[select.currentPlayMediaIndex].link} /> :
                     <MediaPlayer url={null}/>
                 }
                 <ListContainer>
                     <MediaCombobox />
-                    <MediaColumn media={explorer.select.options[explorer.select.currentIndex]} />
+                    <MediaColumn media={select.options[select.currentIndex]} />
                 </ListContainer>      
             </Container>
         </DragDropContext>

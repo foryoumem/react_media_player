@@ -2,6 +2,7 @@ import { onLoadPlaylist } from "../app/storage"
 
 export const initColumn = {
     droppableId: "play",
+    type: "explorer",
     title: "Playlist",
     isDropDisabled: false,
     isRenderClone: false,
@@ -12,6 +13,7 @@ export const initColumn = {
 export const init = {
     main: {
         droppableId: "main",
+        type: "explorer",
         title: "Loaded media",
         isDropDisabled: true,
         isRenderClone: true,
@@ -19,6 +21,7 @@ export const init = {
     },
     play: {
         droppableId: "play",
+        type: "explorer",
         title: "Playlist",
         isDropDisabled: false,
         isRenderClone: false,

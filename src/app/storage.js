@@ -42,8 +42,6 @@ export const onLoadPlaylist = () => {
     
     // Playlist가 Local Storage에 없을 경우
     const list = [{...initColumn, id: 0}]
-    console.log("onLoadPlaylist")
-    console.log(list)
     localStorage.setItem(PLAYLIST, parseStringify(list))
     return list
 }
