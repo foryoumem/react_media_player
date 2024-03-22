@@ -13,14 +13,10 @@ export const explorerSlice = createSlice({
         onChangePlaylist: (state, action) => {
             state.value.select.options = action.payload
         },
-        onCreatePlaylist: (state, action) => {
-            state.value.save.playlist = action.payload
-        },
         onChangeSelectOption: (state, action) => {
             state.value.select.options[state.value.select.currentIndex].list = action.payload
         },
         appendSelectOption: (state, action) => {
-            console.log(action.payload)
             state.value.select.options = [...state.value.select.options, action.payload]
         },
         setCurrentSelectOption: (state, action) => {
@@ -35,11 +31,9 @@ export const explorerSlice = createSlice({
 export const {
     onChangeDatalist,
     onChangePlaylist,
-    onCreatePlaylist,
     onChangeSelectOption,
     appendSelectOption,
     setCurrentSelectOption,
-    onClickMedia,
     setPlayMediaIndex,
 } = explorerSlice.actions
 

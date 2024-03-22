@@ -9,26 +9,29 @@ import MediaCombobox from "./MediaCombobox"
 import MediaPlaylistCreator from "./MediaPlaylistCreator"
 import { onUpdatePlaylistIndexOf } from "../app/storage"
 import { onChangeDatalist, onChangeSelectOption } from "../features/explorerSlice"
+import { initItem } from "../features/initialExplorer"
 
 const Container = styled.div`
 display: flex;
 justify-content: space-around;
 background-color: inherit;
-height: 98vh;
+height: 90vh;
 `
 
 const MainContainer = styled.div`
 display: flex;
 flex-direction: column;
-width: 30vw;
+width: 50vw;
 height: 100%;
+margin: 5px;
 `
 
 const PlayContainer = styled.div`
 display: flex;
 flex-direction: column;
-width: 30vw;
+width: 50vw;
 height: 100%;
+margin: 5px;
 `
 
 const getId = (objA, objB) => {
@@ -83,7 +86,12 @@ const MediaExplorer = () => {
 
             const droppedTarget = main[source.index]
             const id = getId(main, play)
-            const item = {...droppedTarget, id: id}
+            const item = {
+                ...initItem, 
+                ...droppedTarget, 
+                id: id,
+                location: "root",
+            }
 
             const arr = [...play]
             arr.splice(destination.index, 0, item)  

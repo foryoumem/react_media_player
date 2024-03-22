@@ -3,6 +3,13 @@ import { fetchMedia } from "../features/mediaSlice"
 import { useDispatch } from "react-redux"
 
 import MediaExplorer from "../component/MediaExplorer"
+import styled from "styled-components"
+import MediaHeader from "../component/MediaHeader"
+
+const Container = styled.div`
+display: flex;
+flex-direction: column;
+`
 
 export default function Root() {
     console.log("Root Component 실행")
@@ -20,9 +27,10 @@ export default function Root() {
 
 
     return (
-        <div>
+        <Container>
+            <MediaHeader />
             <MediaExplorer />
-        </div>
+        </Container>
     )
 }
 

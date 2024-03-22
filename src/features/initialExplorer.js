@@ -9,6 +9,16 @@ export const initColumn = {
     currentPlayMediaIndex: 0,
     list: [],
 }
+export const initItem = {
+    id: "",
+    title: "",
+    link: "",
+    type: "",
+    icon: "",
+    location: "",
+    isPlay: false,
+    isClicked: false,
+}
 
 export const init = {
     main: {

@@ -15,7 +15,7 @@ const Container = styled.div`
 display: flex;
 justify-content: space-around;
 background-color: inherit;
-height: 98vh;
+height: 90vh;
 `
 
 const ListContainer = styled.div`

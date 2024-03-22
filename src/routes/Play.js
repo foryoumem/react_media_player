@@ -6,6 +6,13 @@ import { onSelectMedia, setCurrentPlaylistIndex } from "../features/explorerSlic
 import { useSelector } from "react-redux";
 import { initColumn } from "../features/initialExplorer";
 import { onLoadPlaylistIndexOf } from "../app/storage";
+import styled from "styled-components";
+import MediaHeader from "../component/MediaHeader";
+
+const Container = styled.div`
+display: flex;
+flex-direction: column;
+`
 
 
 export default function Play() {
@@ -13,19 +20,10 @@ export default function Play() {
     const media = useLocation()
     console.log("Play Compoennet location: ", media.state.type)
 
-    const onPlayFromState = (state) => {
-        if (state.type === "playlist") {
-            return onLoadPlaylistIndexOf(state.index)
-        }
-        if (state.type === "non-playlist") {
-            return state.playlist
-        }
-        return []
-    } 
-
     return (
-        <div>
+        <Container>
+            <MediaHeader />
             <MediaPlaylist />
-        </div>
+        </Container>
     )
 }
