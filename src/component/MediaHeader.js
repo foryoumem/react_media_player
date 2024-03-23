@@ -13,6 +13,7 @@ color: #fff;
 cursor: pointer;
 transition: background-color 0.3s;
 height: 8vh;
+margin: 5px;
 
 &:active {
     background-color: #555;
